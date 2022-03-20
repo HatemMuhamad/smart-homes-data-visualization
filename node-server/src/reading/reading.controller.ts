@@ -1,0 +1,13 @@
+import { Controller, Get } from '@nestjs/common';
+import { reading } from './entities/reading.entity';
+import { ReadingService } from './reading.service';
+
+@Controller()
+export class ReadingController {
+  constructor(private readingService: ReadingService) {}
+
+  @Get()
+  getAllReadings(): Promise<reading[]> {
+    return this.readingService.getReadings();
+  }
+}
