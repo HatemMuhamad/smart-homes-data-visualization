@@ -25,6 +25,9 @@ let ReadingController = class ReadingController {
     getReadingsBySerialNumber(serialNumber) {
         return this.readingService.getReadingsBySerialNumber(serialNumber);
     }
+    getReadingsByDeviceID(deviceID) {
+        return this.readingService.getReadingsByDeviceID(deviceID);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -33,12 +36,19 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReadingController.prototype, "getAllReadings", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('serialnumber/:serialNumber'),
+    __param(0, (0, common_1.Param)('serialNumber')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ReadingController.prototype, "getReadingsBySerialNumber", null);
+__decorate([
+    (0, common_1.Get)('deviceid/:deviceID'),
+    __param(0, (0, common_1.Param)('deviceID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ReadingController.prototype, "getReadingsByDeviceID", null);
 ReadingController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [reading_service_1.ReadingService])

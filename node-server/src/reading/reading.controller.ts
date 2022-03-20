@@ -11,8 +11,13 @@ export class ReadingController {
     return this.readingService.getReadings();
   }
 
-  @Get(':id')
-  getReadingsBySerialNumber(@Param('id') serialNumber: string): Promise<reading[]> {
+  @Get('serialnumber/:serialNumber')
+  getReadingsBySerialNumber(@Param('serialNumber') serialNumber: string): Promise<reading[]> {
     return this.readingService.getReadingsBySerialNumber(serialNumber);
+  }
+
+  @Get('deviceid/:deviceID')
+  getReadingsByDeviceID(@Param('deviceID') deviceID: string): Promise<reading[]> {
+    return this.readingService.getReadingsByDeviceID(deviceID);
   }
 }
