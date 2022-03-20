@@ -17,4 +17,9 @@ export class ReadingService {
   async getReadingsBySerialNumber(serialNumber: string): Promise<reading[]> {
     return this.readingRepository.findAll({where: {Serial_Number: serialNumber}});
   }
+
+  @Get(':id')
+  async getReadingsByDeviceID(deviceID: string): Promise<reading[]> {
+    return this.readingRepository.findAll({where: {Device_ID: deviceID}});
+  }
 }

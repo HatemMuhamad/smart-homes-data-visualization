@@ -4,4 +4,5 @@ export declare class ReadingService {
     constructor(readingRepository: typeof reading);
     getReadings(): Promise<reading[]>;
     getReadingsBySerialNumber(serialNumber: string): Promise<reading[]>;
+    getReadingsByDeviceID(deviceID: string): Promise<reading[]>;
 }

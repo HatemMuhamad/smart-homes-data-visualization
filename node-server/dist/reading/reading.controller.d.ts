@@ -5,4 +5,5 @@ export declare class ReadingController {
     constructor(readingService: ReadingService);
     getAllReadings(): Promise<reading[]>;
     getReadingsBySerialNumber(serialNumber: string): Promise<reading[]>;
+    getReadingsByDeviceID(deviceID: string): Promise<reading[]>;
 }
