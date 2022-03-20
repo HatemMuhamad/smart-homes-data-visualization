@@ -21,7 +21,22 @@ let ReadingService = class ReadingService {
     async getReadings() {
         return this.readingRepository.findAll();
     }
+    async getReadingsBySerialNumber(serialNumber) {
+        return this.readingRepository.findAll({ where: { Serial_Number: serialNumber } });
+    }
 };
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ReadingService.prototype, "getReadings", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ReadingService.prototype, "getReadingsBySerialNumber", null);
 ReadingService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)('READINGS_REPOSITORY')),

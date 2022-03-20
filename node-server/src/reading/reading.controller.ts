@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { reading } from './entities/reading.entity';
 import { ReadingService } from './reading.service';
 
@@ -9,5 +9,10 @@ export class ReadingController {
   @Get()
   getAllReadings(): Promise<reading[]> {
     return this.readingService.getReadings();
+  }
+
+  @Get(':id')
+  getReadingsBySerialNumber(@Param('id') serialNumber: string): Promise<reading[]> {
+    return this.readingService.getReadingsBySerialNumber(serialNumber);
   }
 }
