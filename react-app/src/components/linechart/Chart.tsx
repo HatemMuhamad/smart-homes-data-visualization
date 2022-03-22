@@ -1,8 +1,6 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
-//import { Chart as ChartJS } from "chart.js/auto";
+import { CartesianGrid, Label, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Reading } from '../common/Types';
-import Chart from "chart.js";
 
 interface Props {
   chartData: Reading[];
@@ -10,21 +8,30 @@ interface Props {
 
 export default function LChart({chartData} : Props) {
 
-  let dates: any = []
-  chartData.forEach((reading) => {
-    dates.push(reading.day);
-  })
-  let powerConsumptions: any = []
-  chartData.forEach((reading) => {
-    powerConsumptions.push(reading.Wattage_Daily_Sum);
-  })
-
-  const formatData = (): Chart.ChartData => ({
-    labels: dates,
-    datasets: powerConsumptions
-
-  });
-
-  formatData()
-  //return <Line data={chartData} />;
+  return (
+    <ResponsiveContainer width="80%" aspect={3}>
+    <LineChart
+      width={500}
+      height={320}
+      data={chartData}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 400,
+        bottom: 70,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="day" angle={-35} textAnchor='end'>
+        <Label value="Time (Days)" position="bottom" offset={45} />
+      </XAxis>
+      <YAxis unit="MW">
+        <Label value="Wattage (Megawatts)" angle={270} position='left' style={{ textAnchor: 'middle' }}></Label>
+        </YAxis> 
+      <Tooltip />
+      <Legend layout="vertical" verticalAlign="top" align="right" />
+      <Line type="monotone" dataKey="Wattage_Daily_Sum" stroke="#8884d8" activeDot={{ r: 12 }} />
+    </LineChart>
+  </ResponsiveContainer>
+  );
 }

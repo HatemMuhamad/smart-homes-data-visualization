@@ -5,20 +5,16 @@ import * as rentalApi from '../../api/ReadingApi';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { AxiosResponse } from 'axios';
 
-const data = [
+const data: Reading[] = [
   {
-    id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555,
+    day: "2019-04-29T06:00:00.000Z",
+    Wattage_Daily_Sum: 15594174.6608
   },
   {
-    id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234,
-  },
-  ];
+    day: "2019-04-29T06:00:00.000Z",
+    Wattage_Daily_Sum: 15594174.6608
+  }
+]
 
 export default function MyApp() {
 
@@ -29,12 +25,21 @@ export default function MyApp() {
         handleGetAndSetRentals();
     }, []);
 
+    function formatData(readings: Reading[]): Reading[] {
+        let formattedData: Reading[] = [];
+        readings.forEach((element) => {
+          let formattedDate = element.day.substring(0,10);
+          let megaWatts: number = +(element.Wattage_Daily_Sum / 1000000).toFixed(2);
+          let formattedReading: Reading = { day: formattedDate, Wattage_Daily_Sum: megaWatts};
+          formattedData.push(formattedReading);
+        })
+        return formattedData;
+    }
+
     function handleGetAndSetRentals(): void {
         rentalApi.GetReadings().then((retrievedReadings: AxiosResponse<Reading[]>) => {
             setReadings(retrievedReadings.data);
-            setReadingsToDisplay(retrievedReadings.data);
-            console.log(retrievedReadings.data)
-            console.log(typeof(readingsToDisplay))
+            setReadingsToDisplay(formatData(retrievedReadings.data));
         }).catch((error) =>{
             console.log('some errors when getting readings for display');
             console.log(error);
@@ -45,6 +50,7 @@ export default function MyApp() {
     return (
         <>
         <h1>Hello World</h1>
+        <LChart chartData={readingsToDisplay}/>
         </>
     )
 }
