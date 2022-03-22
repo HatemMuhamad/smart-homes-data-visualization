@@ -1,0 +1,29 @@
+.general-input{
+    width: 367px;
+    height: 48px;
+    background: rgba(255,255,255,1);
+    border: 1px solid rgba(208,211,216,1);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+    font-family: Inter;
+    font-size: 22px;
+    opacity: 1;
+    text-align: left;
+    margin-bottom: 1px;
+  }
+
+  .general-button{
+    background: rgba(0,0,0,1);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30000001192092896);
+    font-family: Montserrat;
+    font-size: 16px;
+    text-align: center;
+    color: rgba(255,255,255,1);
+  }

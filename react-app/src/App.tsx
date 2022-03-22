@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import MyApp from './components/MyApp/MyApp';
+import DataVisualization from './components/datavisualization/DataVisualization';
 
 function App() {
   return (
     <div className="App">
-      <MyApp />
+      <DataVisualization />
     </div>
   );
 }
