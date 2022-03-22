@@ -8,7 +8,7 @@ export class ReadingController {
 
   @Get()
   getAllReadings(): Promise<reading[]> {
-    return this.readingService.getReadings();
+    return this.readingService.getReadingsByDay();
   }
 
   @Get('serialnumber/:serialNumber')
