@@ -13,3 +13,9 @@ export function GetReadingsBySerialNumber(serialNumber: string): Promise<AxiosRe
   const apiCall = 'api/readings/serialnumber/' + serialNumber;
   return getAxios().get<Reading[]>(apiCall);
 }
+
+export function GetReadingsByDeviceId(deviceId: string): Promise<AxiosResponse<Reading[]>>{
+
+  const apiCall = 'api/readings/deviceid/' + deviceId;
+  return getAxios().get<Reading[]>(apiCall);
+}
