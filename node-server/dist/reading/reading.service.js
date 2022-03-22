@@ -14,18 +14,54 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReadingService = void 0;
 const common_1 = require("@nestjs/common");
+const sequelize_typescript_1 = require("sequelize-typescript");
 let ReadingService = class ReadingService {
     constructor(readingRepository) {
         this.readingRepository = readingRepository;
     }
-    async getReadings() {
-        return this.readingRepository.findAll();
+    async getReadingsByDay() {
+        return this.readingRepository.findAll({
+            attributes: [
+                ["date_trunc('day', \"DateTime\")", "day"],
+                [sequelize_typescript_1.Sequelize.literal("SUM(\"Wattage\")"), "Wattage_Daily_Sum"],
+            ],
+            group: ["day"],
+            order: [
+                [sequelize_typescript_1.Sequelize.literal('day'), 'ASC']
+            ],
+        });
     }
     async getReadingsBySerialNumber(serialNumber) {
-        return this.readingRepository.findAll({ where: { Serial_Number: serialNumber } });
+        return this.readingRepository.findAll({
+            where: {
+                Serial_Number: serialNumber
+            },
+            attributes: [
+                ["date_trunc('day', \"DateTime\")", "day"],
+                [sequelize_typescript_1.Sequelize.literal("SUM(\"Wattage\")"), "Wattage_Daily_Sum"],
+            ],
+            group: ["day"],
+            order: [
+                [sequelize_typescript_1.Sequelize.literal('day'), 'ASC']
+            ],
+        });
+        ;
     }
     async getReadingsByDeviceID(deviceID) {
-        return this.readingRepository.findAll({ where: { Device_ID: deviceID } });
+        return this.readingRepository.findAll({
+            where: {
+                Device_ID: deviceID
+            },
+            attributes: [
+                ["date_trunc('day', \"DateTime\")", "day"],
+                [sequelize_typescript_1.Sequelize.literal("SUM(\"Wattage\")"), "Wattage_Daily_Sum"],
+            ],
+            group: ["day"],
+            order: [
+                [sequelize_typescript_1.Sequelize.literal('day'), 'ASC']
+            ],
+        });
+        ;
     }
 };
 __decorate([
@@ -33,7 +69,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], ReadingService.prototype, "getReadings", null);
+], ReadingService.prototype, "getReadingsByDay", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __metadata("design:type", Function),

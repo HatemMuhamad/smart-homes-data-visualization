@@ -20,7 +20,7 @@ let ReadingController = class ReadingController {
         this.readingService = readingService;
     }
     getAllReadings() {
-        return this.readingService.getReadings();
+        return this.readingService.getReadingsByDay();
     }
     getReadingsBySerialNumber(serialNumber) {
         return this.readingService.getReadingsBySerialNumber(serialNumber);
